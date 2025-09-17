@@ -53,6 +53,8 @@ const AppRoutes: React.FC = () => {
       <Route path='/login' element={<AuthPage />} />
       <Route path='/register' element={<AuthPage />} />
       <Route path='/public-leaderboard' element={<PublicLeaderboardPage />} />
+      <Route path='/leaderboard-public' element={<PublicLeaderboardPage />} />
+      <Route path='/standings' element={<PublicLeaderboardPage />} />
       <Route
         path='/'
         element={
