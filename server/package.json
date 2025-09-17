@@ -3,12 +3,11 @@
   "version": "1.0.0",
   "description": "NFL Spread Picking Showdown Backend",
   "main": "dist/index.js",
-    "scripts": {  
-      "start": "node dist/index.js",
-      "build": "tsc",
-      "dev": "nodemon src/index.ts"
-    },
-  
+  "scripts": {
+    "start": "npx ts-node src/index.ts",
+    "build": "echo 'No build needed'",
+    "dev": "nodemon src/index.ts"
+  },
   "keywords": [
     "nfl",
     "picks",
