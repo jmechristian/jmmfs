@@ -11,6 +11,7 @@ import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 import HomePage from './pages/HomePage';
 import LeaderboardPage from './pages/LeaderboardPage';
+import PublicLeaderboardPage from './pages/PublicLeaderboardPage';
 import AdminPage from './pages/AdminPage';
 import AdminSpreadPage from './pages/AdminSpreadPage';
 
@@ -51,6 +52,7 @@ const AppRoutes: React.FC = () => {
     <Routes>
       <Route path='/login' element={<AuthPage />} />
       <Route path='/register' element={<AuthPage />} />
+      <Route path='/public-leaderboard' element={<PublicLeaderboardPage />} />
       <Route
         path='/'
         element={

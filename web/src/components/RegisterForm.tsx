@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../hooks/useAuth';
-import { Eye, EyeOff, User, Lock, Mail } from 'lucide-react';
+import { Eye, EyeOff, User, Lock } from 'lucide-react';
 
 interface RegisterFormProps {
   onToggleMode: () => void;

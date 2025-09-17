@@ -1,10 +1,10 @@
-import React, { ReactNode } from 'react';
+import React, { type ReactNode } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import {
   Trophy,
   Calendar,
-  Users,
+  // Users,
   Settings,
   LogOut,
   User,
@@ -40,7 +40,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                   <User className='h-5 w-5' />
                   <span className='text-sm'>{user.displayName}</span>
                   {user.role === 'admin' && (
-                    <Shield className='h-4 w-4 text-nfl-gold' title='Admin' />
+                    <Shield className='h-4 w-4 text-nfl-gold' />
                   )}
                 </div>
                 <button

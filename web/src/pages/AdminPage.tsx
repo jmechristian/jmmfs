@@ -9,7 +9,7 @@ import {
   Clock,
   Save,
   UserPlus,
-  Users,
+  // Users,
   Target,
 } from 'lucide-react';
 
@@ -210,7 +210,12 @@ const AdminPage: React.FC = () => {
           allUsers.find((u) => u._id === selectedUser)?.displayName
         }`
       );
-      setUserPicks({ bestBet: null, onePointPicks: [] });
+      setUserPicks({
+        bestBet: null,
+        bestBetTeam: null,
+        onePointPicks: [],
+        onePointTeams: [],
+      });
     } catch (error: any) {
       setMessage(error.response?.data?.message || 'Failed to submit picks');
     } finally {

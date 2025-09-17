@@ -3,11 +3,12 @@ import type {
   User,
   Game,
   Pick,
-  WeekSettings,
+  // WeekSettings,
   LeaderboardEntry,
 } from '../types/index.js';
 
-const API_BASE_URL = 'http://localhost:3001/api';
+const API_BASE_URL =
+  import.meta.env.VITE_API_URL || 'https://jmmfs-backend.onrender.com/api';
 
 // Create axios instance with default config
 const api = axios.create({

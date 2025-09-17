@@ -5,7 +5,7 @@ import { useAuth } from '../hooks/useAuth';
 import { Lock, Unlock, Save, Edit3 } from 'lucide-react';
 
 const AdminSpreadPage: React.FC = () => {
-  const { user } = useAuth();
+  const {} = useAuth();
   const [games, setGames] = useState<Game[]>([]);
   const [selectedWeek, setSelectedWeek] = useState(3);
   const [loading, setLoading] = useState(true);
