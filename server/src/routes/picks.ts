@@ -99,6 +99,72 @@ router.post('/submit', authenticateToken, async (req: AuthRequest, res) => {
   }
 });
 
+// Get public leaderboard (no auth required)
+router.get('/public-leaderboard', async (req, res) => {
+  try {
+    const season = req.query.season || new Date().getFullYear();
+
+    const leaderboard = await Pick.aggregate([
+      { $match: { season: parseInt(season as string) } },
+      {
+        $group: {
+          _id: '$userId',
+          totalPoints: { $sum: '$pointsEarned' },
+          totalPicks: { $sum: 1 },
+          correctPicks: {
+            $sum: { $cond: [{ $eq: ['$isCorrect', true] }, 1, 0] },
+          },
+          bestBetsTotal: {
+            $sum: { $cond: [{ $eq: ['$isBestBet', true] }, 1, 0] },
+          },
+          bestBetsCorrect: {
+            $sum: {
+              $cond: [
+                {
+                  $and: [
+                    { $eq: ['$isBestBet', true] },
+                    { $eq: ['$isCorrect', true] },
+                  ],
+                },
+                1,
+                0,
+              ],
+            },
+          },
+        },
+      },
+      {
+        $lookup: {
+          from: 'users',
+          localField: '_id',
+          foreignField: '_id',
+          as: 'user',
+        },
+      },
+      { $unwind: '$user' },
+      {
+        $project: {
+          _id: 1,
+          totalPoints: 1,
+          totalPicks: 1,
+          correctPicks: 1,
+          bestBetsTotal: 1,
+          bestBetsCorrect: 1,
+          'user._id': 1,
+          'user.username': 1,
+          'user.displayName': 1,
+        },
+      },
+      { $sort: { totalPoints: -1, correctPicks: -1 } },
+    ]);
+
+    res.json(leaderboard);
+  } catch (error) {
+    console.error('Error fetching public leaderboard:', error);
+    res.status(500).json({ message: 'Error fetching leaderboard' });
+  }
+});
+
 // Get leaderboard
 router.get('/leaderboard', authenticateToken, async (req: AuthRequest, res) => {
   try {

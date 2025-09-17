@@ -21,7 +21,7 @@ const PublicLeaderboardPage: React.FC = () => {
 
   const loadLeaderboard = async () => {
     try {
-      const data = await picksAPI.getLeaderboard();
+      const data = await picksAPI.getPublicLeaderboard();
       setLeaderboard(data);
     } catch (error) {
       console.error('Error loading leaderboard:', error);

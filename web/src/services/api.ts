@@ -117,6 +117,15 @@ export const picksAPI = {
     return response.data;
   },
 
+  getPublicLeaderboard: async (
+    season?: number
+  ): Promise<LeaderboardEntry[]> => {
+    const response = await api.get('/picks/public-leaderboard', {
+      params: { season },
+    });
+    return response.data;
+  },
+
   // Admin functions
   lockWeek: async (week: number, season: number, isLocked: boolean) => {
     const response = await api.post('/picks/admin/lock-week', {
